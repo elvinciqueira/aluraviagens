@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   html, body {
+    font-family: ${({theme}) => theme.fontFamily};
     background-color: ${({theme}) => theme.colors.primary.main.color};
     display: flex;
     min-height: 100vh;
