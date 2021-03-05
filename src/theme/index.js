@@ -1,7 +1,10 @@
 export const colors = {
   primary: {
-    main: {
+    light: {
       color: '#35b6ff',
+    },
+    main: {
+      color: '#0094E8',
     },
   },
   secondary: {

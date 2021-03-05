@@ -13,7 +13,6 @@ const GlobalStyle = createGlobalStyle`
   html, body {
     font-family: ${({theme}) => theme.fontFamily};
     background-color: ${({theme}) => theme.colors.primary.main.color};
-    display: flex;
     min-height: 100vh;
     width: 100%;
   }
@@ -21,7 +20,6 @@ const GlobalStyle = createGlobalStyle`
   #__next {
     flex: 1;
     display: flex;
-    flex-direction: column;
   }
 `
 
