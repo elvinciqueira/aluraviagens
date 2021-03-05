@@ -1,24 +1,20 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import {ThemeProvider} from 'styled-components'
+import Head from 'next/head'
+import GlobalStyle from '../src/theme/GlobalStyle'
+import theme from '../src/theme'
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
-
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-}
-
-export default function App({ Component, pageProps }) {
+export default function App({Component, pageProps}) {
   return (
     <>
-      <GlobalStyle />
+      <Head>
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Pattaya&family=Roboto:wght@400;500;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
     </>
