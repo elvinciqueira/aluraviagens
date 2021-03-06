@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useEffect, useRef, useState} from 'react'
+import {useField} from '@unform/core'
 import styled from 'styled-components'
 
 const StyledInput = styled.input`
@@ -8,6 +9,29 @@ const StyledInput = styled.input`
   border-radius: 10px;
 `
 
-const InputField = () => <StyledInput type="text" placeholder="teste" />
+const InputField = ({name, type, ...rest}) => {
+  const {fieldName, registerField, defaultValue} = useField(name)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    registerField({
+      name: fieldName,
+      ref: inputRef,
+      getValue: (ref) => ref.current.value,
+      setValue: (ref, value) => (ref.current.value = value),
+      clearVlue: (ref) => (ref.current.value = ''),
+    })
+  }, [fieldName, registerField])
+
+  return (
+    <StyledInput
+      name={name}
+      type={type}
+      ref={inputRef}
+      defaultValue={defaultValue}
+      {...rest}
+    />
+  )
+}
 
 export default InputField
