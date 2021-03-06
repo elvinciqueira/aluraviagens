@@ -4,6 +4,7 @@ import {Form} from '@unform/web'
 import {Grid} from '../../atoms/Grid'
 import Field from '../../molecules/Field'
 import Text from '../../atoms/Text/Text'
+import Button from '../../atoms/Button'
 
 function FormContent() {
   const formRef = React.useRef(null)
@@ -26,7 +27,7 @@ function FormContent() {
         </Grid.Row>
       </section>
 
-      <button type="submit">Enviar</button>
+      <Button type="submit">Enviar</Button>
     </Form>
   )
 }
