@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import get from 'lodash/get'
 
 const TextBase = styled.span`
   font-family: ${({theme}) => theme.fontFamily};
   font-weight: 400;
   font-size: 1.5rem;
-  color: ${({theme}) => theme.colors.tertiary.main.color};
+  color: ${({theme, color}) => get(theme, `colors.${color}.color`)};
   margin-bottom: 32px;
 `
 

@@ -13,6 +13,9 @@ export const colors = {
     },
   },
   tertiary: {
+    light: {
+      color: '#404040',
+    },
     main: {
       color: '#000',
     },
