@@ -9,6 +9,7 @@ const styles = css`
   list-style: none;
   box-sizing: border-box;
   border-radius: ${({theme}) => theme.borderRadius};
+  margin-bottom: 32px;
 
   li {
     display: flex;
