@@ -12,6 +12,10 @@ const ListBox = styled.ul`
   max-height: 200px;
   border: 1px solid rgba(0, 0, 0, 0.25);
 
+  option {
+    cursor: pointer;
+  }
+
   li[data-focus='true'] {
     background-color: '#4a8df6';
     color: white;
@@ -25,12 +29,24 @@ const ListBox = styled.ul`
 `
 
 const AutoComplete = ({onChange, renderInput, options}) => {
+  const [value, setValue] = React.useState('')
+
+  const handleOnChange = (e) => {
+    setValue(e.target.value)
+
+    onChange(e)
+  }
+
   return (
     <div>
-      {renderInput({onChange})}
+      {renderInput({onChange: handleOnChange, value})}
       <ListBox>
         {options.map(({text, value}) => (
-          <li key={value}>{text}</li>
+          <li key={value}>
+            <option onClick={(e) => setValue(e.target.value)} value={text}>
+              {text}
+            </option>
+          </li>
         ))}
       </ListBox>
     </div>
