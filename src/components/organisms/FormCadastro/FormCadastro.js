@@ -1,12 +1,14 @@
 import React from 'react'
+import * as Yup from 'yup'
 import {Form} from '@unform/web'
 
+import countries from '../../../utils/countries'
 import {Grid} from '../../atoms/Grid'
 import Field from '../../molecules/Field'
 import Text from '../../atoms/Text/Text'
 import Button from '../../atoms/Button'
 import RadioButton from '../../molecules/RadioButton'
-import * as Yup from 'yup'
+import AutoComplete from '../../molecules/AutoComplete'
 
 const paymentsOptions = {
   1: {
@@ -26,6 +28,7 @@ const paymentsOptions = {
 function FormContent() {
   const formRef = React.useRef(null)
   const [selectedItem, setSelectedItem] = React.useState(null)
+  const [options, setOptions] = React.useState([])
 
   const handleSubmit = async (data) => {
     try {
@@ -58,6 +61,15 @@ function FormContent() {
   }
 
   const handleSelectedItem = (id) => setSelectedItem(id)
+
+  const autoComplete = (country) => {
+    return countries.filter((value) => {
+      const valueLowerCase = value.text.toLowerCase()
+      const countryLowerCase = country.toLowerCase()
+
+      return valueLowerCase.includes(countryLowerCase)
+    })
+  }
 
   return (
     <Form ref={formRef} onSubmit={handleSubmit}>
@@ -121,7 +133,18 @@ function FormContent() {
         </Grid.Row>
         <Grid.Row>
           <Grid.Col value={{xs: 12, md: 6, lg: 6}}>
-            <Field type="text" name="páis" label="País de residência" />
+            <AutoComplete
+              options={options}
+              onChange={(e) => setOptions(autoComplete(e.target.value))}
+              renderInput={(params) => (
+                <Field
+                  type="text"
+                  name="páis"
+                  label="País de residência"
+                  {...params}
+                />
+              )}
+            />
           </Grid.Col>
           <Grid.Col value={{xs: 12, md: 6, lg: 6}}>
             <Field
